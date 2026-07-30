@@ -1,5 +1,5 @@
 {
-  "name": "Java + Maven + Ollama Dev Environment",
+  "name": "Java25 + OpenAI",
   "build": {
     "dockerfile": "Dockerfile"
   },
