@@ -12,12 +12,12 @@ RUN apt-get update && apt-get install -y \
     && wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc \
     && echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/adoptium.list \
     && apt-get update \
-    && apt-get install -y temurin-25-jdk \
+    && apt-get install -y temurin-21-jdk \
     && rm -rf /var/lib/apt/lists/*
 
 # 2. Criar um link simbólico independente da arquitetura (amd64 ou arm64)
-RUN ln -s $(ls -d /usr/lib/jvm/temurin-25-jdk-* | head -n 1) /usr/lib/jvm/java-25
+RUN ln -s $(ls -d /usr/lib/jvm/temurin-21-jdk-* | head -n 1) /usr/lib/jvm/java-21
 
 # 3. Configurar as variáveis de ambiente apontando para o link simbólico
-ENV JAVA_HOME=/usr/lib/jvm/java-25
+ENV JAVA_HOME=/usr/lib/jvm/java-21
 ENV PATH="${JAVA_HOME}/bin:${PATH}"
